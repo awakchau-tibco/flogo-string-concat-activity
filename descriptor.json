@@ -1,7 +1,7 @@
 {
     "name": "string-concat-activity",
     "type": "flogo:activity",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "title": "String Concater",
     "description": "Simple String Concater",
     "homepage": "https://github.com/awakchau-tibco/tree/master/flogo-string-concat-activity/string-concat-activity",
