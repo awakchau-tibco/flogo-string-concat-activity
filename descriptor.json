@@ -1,0 +1,33 @@
+{
+    "name": "string-concat-activity",
+    "type": "flogo:activity",
+    "version": "0.0.1",
+    "title": "Sample Activity",
+    "description": "Sample Activity",
+    "homepage": "https://github.com/awakchau-tibco/tree/master/flogo-string-concat-activity/string-concat-activity",
+    "settings": [
+      {
+        "name": "concatChar",
+        "type": "string",
+        "required": false
+      }
+    ],
+    "input": [
+      {
+        "name": "firstString",
+        "type": "string",
+        "required": true
+      },
+      {
+        "name": "secondString",
+        "type": "string",
+        "required": true
+      }
+    ],
+    "output": [
+      {
+        "name": "concatedString",
+        "type": "string"
+      }
+    ]
+  }
