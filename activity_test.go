@@ -17,8 +17,8 @@ func TestRegister(t *testing.T) {
 }
 
 func TestEval(t *testing.T) {
-
 	act := &Activity{}
+	act.ConcatChar = " + "
 	tc := test.NewActivityContext(act.Metadata())
 	input := &Input{FirstString: "f", SecondString: "s"}
 	err := tc.SetInputObject(input)
@@ -31,5 +31,5 @@ func TestEval(t *testing.T) {
 	output := &Output{}
 	err = tc.GetOutputObject(output)
 	assert.Nil(t, err)
-	assert.Equal(t, "fs", output.ConcatedString)
+	assert.Equal(t, "f + s", output.ConcatedString)
 }

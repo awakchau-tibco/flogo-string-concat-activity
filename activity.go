@@ -25,7 +25,7 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 	ctx.Logger().Debugf("Setting: %#v", s)
 
 	act := &Activity{
-		settings: s,
+		ConcatChar: s.ConcatChar,
 	}
 
 	return act, nil
@@ -33,7 +33,7 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 
 // Activity is an sample Activity that can be used as a base to create a custom activity
 type Activity struct {
-	settings *Settings
+	ConcatChar string
 }
 
 // Metadata returns the activity's metadata
@@ -52,7 +52,7 @@ func (a *Activity) Eval(ctx activity.Context) (done bool, err error) {
 
 	ctx.Logger().Debugf("Input: %#v", input)
 
-	concatedString := fmt.Sprintf("%s%s%s", input.FirstString, a.settings.ConcatChar, input.SecondString)
+	concatedString := fmt.Sprintf("%s%s%s", input.FirstString, a.ConcatChar, input.SecondString)
 	output := &Output{ConcatedString: concatedString}
 	err = ctx.SetOutputObject(output)
 	if err != nil {

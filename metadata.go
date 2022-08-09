@@ -6,23 +6,44 @@ type Settings struct {
 	ConcatChar string `md:"concatChar"`
 }
 
+func (s *Settings) FromMap(values map[string]interface{}) error {
+	c, err := coerce.ToString(values["concatChar"])
+	if err != nil {
+		return err
+	}
+	s.ConcatChar = c
+	return nil
+}
+
+func (s *Settings) ToMap() map[string]interface{} {
+	return map[string]interface{}{
+		"concatChar": s.ConcatChar,
+	}
+}
+
 type Input struct {
 	FirstString  string `md:"firstString,required"`
 	SecondString string `md:"secondString,required"`
 }
 
-func (r *Input) FromMap(values map[string]interface{}) error {
-	s1, _ := coerce.ToString(values["firstString"])
-	r.FirstString = s1
-	s2, _ := coerce.ToString(values["secondString"])
-	r.SecondString = s2
+func (i *Input) FromMap(values map[string]interface{}) error {
+	s1, err := coerce.ToString(values["firstString"])
+	if err != nil {
+		return err
+	}
+	i.FirstString = s1
+	s2, err := coerce.ToString(values["secondString"])
+	if err != nil {
+		return err
+	}
+	i.SecondString = s2
 	return nil
 }
 
-func (r *Input) ToMap() map[string]interface{} {
+func (i *Input) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"firstString":  r.FirstString,
-		"secondString": r.SecondString,
+		"firstString":  i.FirstString,
+		"secondString": i.SecondString,
 	}
 }
 
@@ -31,7 +52,10 @@ type Output struct {
 }
 
 func (o *Output) FromMap(values map[string]interface{}) error {
-	strVal, _ := coerce.ToString(values["concatedString"])
+	strVal, err := coerce.ToString(values["concatedString"])
+	if err != nil {
+		return err
+	}
 	o.ConcatedString = strVal
 	return nil
 }
